@@ -21,6 +21,9 @@ from django.conf.urls import include, url
 urlpatterns = [
     path('', include('myblog.urls')),
     path('admin/', admin.site.urls),
-    url(r'^login/$', login, {'template_name': 'login.html'}, name="login"),
-    url(r'^logout/$', login, {'next_page': '/'}, name="logout"),
+
+    path('login/', login, {'template_name': 'login.html'}, name="login"),
+    path('logout/', login, {'next_page': '/'}, name="logout"),
+    # url(r'^login/$', login, {'template_name': 'login.html'}, name="login"),
+    # url(r'^logout/$', login, {'next_page': '/'}, name="logout"),
 ]
