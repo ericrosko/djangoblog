@@ -20,6 +20,7 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     path('', include('myblog.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
 
     path('login/', login, {'template_name': 'login.html'}, name="login"),
