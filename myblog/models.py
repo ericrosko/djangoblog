@@ -12,6 +12,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return "/posts/{0}".format(self.id)
+
 class Category(models.Model):
     class Meta:
      verbose_name_plural = 'Categories' 

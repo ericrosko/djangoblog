@@ -18,6 +18,8 @@ from django.contrib.auth.views import login, logout
 from django.urls import path, include
 from django.conf.urls import include, url
 
+from myblog.posts_feed import LatestEntriesFeed
+
 urlpatterns = [
     path('', include('myblog.urls')),
     url(r'^accounts/', include('allauth.urls')),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('logout/', login, {'next_page': '/'}, name="logout"),
     # url(r'^login/$', login, {'template_name': 'login.html'}, name="login"),
     # url(r'^logout/$', login, {'next_page': '/'}, name="logout"),
+    path('latest/feed/', LatestEntriesFeed()),
 ]
