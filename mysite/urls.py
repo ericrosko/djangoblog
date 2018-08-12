@@ -14,11 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth.views import login, logout
-from django.urls import path, include
+from django.contrib.auth.views import login  # , logout
+from django.urls import path
 from django.conf.urls import include, url
 
 from myblog.posts_feed import LatestEntriesFeed
+from rest_framework import routers
+
+from myblog import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+
 
 urlpatterns = [
     path('', include('myblog.urls')),
@@ -30,4 +38,11 @@ urlpatterns = [
     # url(r'^login/$', login, {'template_name': 'login.html'}, name="login"),
     # url(r'^logout/$', login, {'next_page': '/'}, name="logout"),
     path('latest/feed/', LatestEntriesFeed()),
+
+
+    # rest
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls',
+        namespace='rest_framework'))
+
 ]
